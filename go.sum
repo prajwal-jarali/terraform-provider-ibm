@@ -97,8 +97,8 @@ github.com/IBM-Cloud/power-go-client v1.17.0 h1:zlVASoThC8hdugGEqSMQnsGjb8j2A6JS
 github.com/IBM-Cloud/power-go-client v1.17.0/go.mod h1:IoC+bOzXTLLlvw35CgHSUdVOpncKWrMCmIg8w7aBCVs=
 github.com/IBM-Cloud/softlayer-go v1.0.5-tf h1:koUAyF9b6X78lLLruGYPSOmrfY2YcGYKOj/Ug9nbKNw=
 github.com/IBM-Cloud/softlayer-go v1.0.5-tf/go.mod h1:6HepcfAXROz0Rf63krk5hPZyHT6qyx2MNvYyHof7ik4=
-github.com/IBM/appconfiguration-go-admin-sdk v0.5.1 h1:EAotl3yQ/u5u/uBryySJMm0COgsYhtNzQ1g2IChtlE0=
-github.com/IBM/appconfiguration-go-admin-sdk v0.5.1/go.mod h1:ikqhyFenxA/QgGh4vItBNjPes0NcI+teRof+z7pzLYM=
+github.com/IBM/appconfiguration-go-admin-sdk v0.9.0 h1:ilI2JHnoXjvIU96SchLyC1WkQnRUsVxV53VPIXP1aCU=
+github.com/IBM/appconfiguration-go-admin-sdk v0.9.0/go.mod h1:b8TXjyKjadjGJipEqM/bUnkOTRDw4x/k8DU+IETtTp0=
 github.com/IBM/appid-management-go-sdk v0.0.0-20210908164609-dd0e0eaf732f h1:4c1kqY4GqmkQ+tO03rneDb74Tv7BhTj8jDiDB1p8mdM=
 github.com/IBM/appid-management-go-sdk v0.0.0-20210908164609-dd0e0eaf732f/go.mod h1:d22kTYY7RYBWcQlZpqrSdshpB/lJ16viWS5Sbjtlc8s=
 github.com/IBM/cloud-databases-go-sdk v0.8.1 h1:ULQ5L8V/9z79/qS185LqbIK2LD4kMtk3Hdhp4lFMVcw=

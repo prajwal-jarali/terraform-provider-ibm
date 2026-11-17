@@ -7,11 +7,13 @@ import (
 	"fmt"
 
 	"github.com/IBM-Cloud/terraform-provider-ibm/ibm/flex"
+	"github.com/IBM-Cloud/terraform-provider-ibm/ibm/service/appconfiguration/utils"
 	"github.com/IBM/appconfiguration-go-admin-sdk/appconfigurationv1"
 	"github.com/IBM/go-sdk-core/v5/core"
 	"github.com/hashicorp/terraform-plugin-sdk/v2/helper/schema"
 )
 
+// ResourceIBMAppConfigIntegrationEn is kept for existing configurations. New configurations use `ibm_app_config_integration`.
 func ResourceIBMAppConfigIntegrationEn() *schema.Resource {
 	return &schema.Resource{
 		Read:     resourceIntegrationEnRead,
@@ -78,7 +80,7 @@ func ResourceIBMAppConfigIntegrationEn() *schema.Resource {
 
 func resourceIntegrationEnCreate(d *schema.ResourceData, meta interface{}) error {
 	guid := d.Get("guid").(string)
-	appconfigClient, err := getAppConfigClient(meta, guid)
+	appconfigClient, err := utils.NewClient(meta, guid)
 	if err != nil {
 		return flex.FmtErrorf("%s", fmt.Sprintf("%s", err))
 	}
@@ -86,7 +88,7 @@ func resourceIntegrationEnCreate(d *schema.ResourceData, meta interface{}) error
 	options.SetIntegrationType("EVENT_NOTIFICATIONS")
 	options.SetIntegrationID(d.Get("integration_id").(string))
 
-	if _, ok := GetFieldExists(d, "description"); ok {
+	if _, ok := d.GetOkExists("description"); ok {
 		options.Metadata = &appconfigurationv1.CreateIntegrationMetadataCreateEnIntegrationMetadata{
 			EventNotificationsInstanceCrn:       core.StringPtr(d.Get("en_instance_crn").(string)),
 			EventNotificationsEndpoint:          core.StringPtr(d.Get("en_endpoint").(string)),
@@ -120,7 +122,7 @@ func resourceIntegrationEnRead(d *schema.ResourceData, meta interface{}) error {
 	if err != nil {
 		return nil
 	}
-	appconfigClient, err := getAppConfigClient(meta, parts[0])
+	appconfigClient, err := utils.NewClient(meta, parts[0])
 	if err != nil {
 		return flex.FmtErrorf("%s", fmt.Sprintf("%s", err))
 	}
@@ -164,7 +166,7 @@ func resourceIntegrationEnDelete(d *schema.ResourceData, meta interface{}) error
 		return nil
 	}
 
-	appconfigClient, err := getAppConfigClient(meta, parts[0])
+	appconfigClient, err := utils.NewClient(meta, parts[0])
 	if err != nil {
 		return flex.FmtErrorf("%s", fmt.Sprintf("%s", err))
 	}

@@ -10,6 +10,8 @@ description: |-
 
 Create or Delete App Configuration and Event Notification services' integration.
 
+~> **Note:** This resource is kept for existing configurations. For new configurations, use the [`ibm_app_config_integration`](https://registry.terraform.io/providers/IBM-Cloud/ibm/latest/docs/resources/app_config_integration) resource, which supports both Event Notifications and Key Protect.
+
 ## Example usage
 
 ```terraform

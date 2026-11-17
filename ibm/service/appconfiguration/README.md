@@ -9,3 +9,4 @@ This area is primarily for IBM provider contributors and maintainers. For inform
 * IBM Provider Docs: [One of the APP Configuration resources](https://registry.terraform.io/providers/IBM-Cloud/ibm/latest/docs/resources/app_config_environment)
 * IBM API Docs: [IBM API Docs for APP Configuration](https://cloud.ibm.com/apidocs/app-configuration)
 * IBM APP Configuration SDK: [IBM SDK for APP Configuration](https://github.com/IBM/appconfiguration-go-admin-sdk/tree/master/appconfigurationv1)
+* Developer guide: [how the resources are built and how to change them](guide/README.md)

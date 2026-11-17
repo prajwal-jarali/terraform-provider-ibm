@@ -6,12 +6,14 @@ import (
 	"fmt"
 
 	"github.com/IBM-Cloud/terraform-provider-ibm/ibm/flex"
+	"github.com/IBM-Cloud/terraform-provider-ibm/ibm/service/appconfiguration/utils"
 	"github.com/hashicorp/terraform-plugin-sdk/v2/helper/schema"
 
 	"github.com/IBM/appconfiguration-go-admin-sdk/appconfigurationv1"
 	"github.com/IBM/go-sdk-core/v5/core"
 )
 
+// DataSourceIBMAppConfigIntegrationKms is kept for existing configurations. New configurations use `ibm_app_config_integration`.
 func DataSourceIBMAppConfigIntegrationKms() *schema.Resource {
 	return &schema.Resource{
 		Read: dataSourceIbmAppConfigIntegrationKmsRead,
@@ -79,7 +81,7 @@ func DataSourceIBMAppConfigIntegrationKms() *schema.Resource {
 func dataSourceIbmAppConfigIntegrationKmsRead(d *schema.ResourceData, meta interface{}) error {
 	guid := d.Get("guid").(string)
 
-	appconfigClient, err := getAppConfigClient(meta, guid)
+	appconfigClient, err := utils.NewClient(meta, guid)
 	if err != nil {
 		return flex.FmtErrorf("getAppConfigClient failed %s", err)
 	}

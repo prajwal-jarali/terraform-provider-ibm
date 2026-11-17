@@ -10,6 +10,8 @@ description: |-
 
 Retrieve information about an existing IBM Cloud App Configuration Key Management Service Integration. You can then reference the fields of the data source in other resources within the same configuration using interpolation syntax.
 
+~> **Note:** This data source is kept for existing configurations. For new configurations, use the [`ibm_app_config_integration`](https://registry.terraform.io/providers/IBM-Cloud/ibm/latest/docs/data-sources/app_config_integration) data source, which supports both Event Notifications and Key Protect.
+
 ## Example usage
 
 ```terraform
