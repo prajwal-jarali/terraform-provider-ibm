@@ -6,9 +6,9 @@ description: |-
   Manages snapshots.
 ---
 
-# ibm_app_config_snapshots
+# ibm_app_config_snapshot
 
-Provides a resource for `snapshot`. This allows snapshot to be created, updated and deleted. For more information, about App Configuration snapshots, see [segments](https://cloud.ibm.com/docs/app-configuration?topic=app-configuration-ac-snapshots).
+Create, update, or delete a snapshot by using IBM Cloud™ App Configuration. For more information, about App Configuration snapshots, see [snapshots](https://cloud.ibm.com/docs/app-configuration?topic=app-configuration-ac-snapshots).
 
 ## Example usage
 
@@ -30,25 +30,36 @@ resource "ibm_app_config_snapshot" "app_config_snapshot" {
 
 Review the argument reference that you can specify for your resource. 
 
-- `guid` - (Required, String) The GUID of the App Configuration service. Fetch GUID from the service instance credentials section of the dashboard.
-- `collection_id`  - (Required, String) Collection ID
-- `environment_id` - (Required, String) Environment Id
+- `guid` - (Required, String) GUID of the App Configuration service. Get it from the service instance credentials section of the dashboard.
+- `collection_id` - (Required, String) Collection Id.
+- `environment_id` - (Required, String) Environment Id.
+- `git_config_id` - (Required, String) Git config id. Allowed special characters are dot ( . ), hyphen( - ), underscore ( _ ) only.
+- `git_branch` - (Required, String) Branch to which the configuration is written. Give the branch name only, without slashes at the start or the end. The branch must exist in the repository.
 - `git_config_name` - (Required, String) Git config name. Allowed special characters are dot ( . ), hyphen( - ), underscore ( _ ) only.
-- `git_config_id` - (Required, String) Git config id. Allowed special characters are dot ( . ), hyphen( - ), underscore ( _ ) only
-- `git_url`  - (Required, String) Git url which will be used to connect to the github account. The url must be formed in this format, https://api.github.com/repos/{owner}/{repo_name} for the personal git account.
-- `git_branch`  - (Required, String) Branch name to which you need to write or update the configuration.
-- `git_file_path`  - (Required, String) Git file path, this is a path where your configuration file will be written. The path must contain the file name with `json` extension.
-- `git_token`  - (Required, String) Git token, this needs to be provided with enough permission to write and update the file.
-
+- `git_file_path` - (Required, String) Path of the file to which the configuration is written. It must contain the file name with a `json` extension. Do not use slashes at the start or the end.
+- `git_token` - (Required, String) Git token, with enough permission to write and update the file. It is never returned by the API.
+- `git_url` - (Required, String) Git url used to connect to the git account, for example `https://api.github.com/repos/{owner}/{repo_name}` for a personal account.
 
 ## Attribute reference
 
 In addition to all argument references list, you can access the following attribute references after your resource is created.
 
-- `created_time` - (Timestamp) Creation time of the segment.
-- `updated_time` - (Timestamp) Last modified time of the segment data.
-- `href` - (String) Git config URL.
+- `id` - (String) The unique identifier of the snapshot resource. The format is `<guid>/<git_config_id>`.
+- `collection` - (List) Details of the collection.
 
+  Nested scheme for `collection`:
+  - `collection_id` - (String) Collection Id.
+  - `name` - (String) Collection name.
+- `created_time` - (Timestamp) Creation time of the git config.
+- `environment` - (List) Details of the environment.
+
+  Nested scheme for `environment`:
+  - `color_code` - (String) Color code of the environment.
+  - `environment_id` - (String) Environment Id.
+  - `name` - (String) Environment name.
+- `href` - (String) git config URL.
+- `last_sync_time` - (Timestamp) Latest time when the snapshot was synced to git.
+- `updated_time` - (Timestamp) Last modified time of the git config.
 
 ## Import
 
@@ -64,5 +75,5 @@ terraform import ibm_app_config_snapshot.sample  <guid/git_config_id>
 **Example**
 
 ```
-terraform import ibm_app_config_snapshot.app_config_snapshot 272111153-c118-4116-8116-b811fbc31132/sample
+terraform import ibm_app_config_snapshot.sample 272111153-c118-4116-8116-b811fbc31132/sample
 ```
